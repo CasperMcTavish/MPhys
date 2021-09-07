@@ -38,10 +38,6 @@ echo "Calibrating..."
 echo -ne 'REF\n' > /dev/ttyUSB0
 # giving a pause before removing standard error
 sleep 1s
-echo -ne 'SYST:ERR?\n' > /dev/ttyUSB0
-echo -ne 'SYST:ERR?\n' > /dev/ttyUSB0
-echo -ne 'SYST:ERR?\n' > /dev/ttyUSB0
 echo -ne '*CLS\n' > /dev/ttyUSB0
 
-# return xy table size in steps (hopefully will switch to mm soon)
 
