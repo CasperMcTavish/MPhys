@@ -1,0 +1,23 @@
+# JohnMPhys here, these are the basic alias' for setting up the X-Y table controller
+# ==============================
+# Alias for X-Y table controller
+# ==============================
+# Permit reading and writing of XY controller
+alias permitxy="ls -l /dev/ttyUSB0; sudo chmod o+rw /dev/ttyUSB0; ls -l /dev/ttyUSB0"
+
+# Read output from XY controller
+alias readxy="cat -v < /dev/ttyUSB0"
+
+# Initialise XY controller
+alias initxy="echo -ne 'INIT\n' > /dev/ttyUSB0; echo -ne '*CLS\n' > /dev/ttyUSB0; echo -ne '*IDN?\n' > /dev/ttyUSB0"
+
+# Calibrate XY controller
+alias calibratexy="echo -ne 'REF\n' > /dev/ttyUSB0"
+
+# Show error and clear errors for XY controller
+alias errorxy="echo -ne 'SYST:ERR?\n' > /dev/ttyUSB0"
+alias clearxy="echo -ne '*CLS\n' > /dev/ttyUSB0"
+
+# Find x and y absolute positions
+alias xyposxy="echo -ne 'X:ABS?\n' > /dev/ttyUSB0;  echo -ne 'Y:ABS?\n' > /dev/ttyUSB0; echo 'Posted coordinates to cat terminal.'"
+
