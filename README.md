@@ -1,11 +1,11 @@
-# MPhys
+# General README
 
 
 Set up for controlling the XY table (and soon its integration with data collection)
 Only .sh files required are:
 
-  initxy.sh
-  scripts.sh
+  - initxy.sh
+  - scripts.sh
 
 initxy.sh calibrates and sets up the XY table, ensure that the carriage is initially moved away from the centre!
 scripts.sh contains multiple functions that can be run.
@@ -17,7 +17,7 @@ The bash_rc file contains alias' that are useful for basic tasks, such as pingin
 To apply scripts.sh and use its functions within a terminal, please use the standard: source ./scripts.sh
 
 
-========= HELP MENU FOR SCRIPTS.SH ==========
+HELP MENU FOR SCRIPTS.SH 
 =============================================
 
 These scripts are for the explicit use in the XY Table and controller developed by University of Edinburgh - School of Physics
