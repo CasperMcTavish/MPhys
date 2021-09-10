@@ -24,7 +24,7 @@ These scripts are for the explicit use in the XY Table and controller developed 
 
 FUNCTIONS LIST:
 
-pingxy
+echo "pingxy"
   Function that pings x y position to the cat terminal
 
 moveabsxy x y
