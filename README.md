@@ -16,15 +16,15 @@ The bash_rc file contains alias' that are useful for basic tasks, such as pingin
 
 To apply scripts.sh and use its functions within a terminal, please use the standard: source ./scripts.sh
 
-=============================================
+
 ========= HELP MENU FOR SCRIPTS.SH ==========
 =============================================
 
 These scripts are for the explicit use in the XY Table and controller developed by University of Edinburgh - School of Physics
-
+```
 FUNCTIONS LIST:
 
-echo "pingxy"
+pingxy
   Function that pings x y position to the cat terminal
 
 moveabsxy x y
@@ -43,3 +43,4 @@ fastslicexy
 inputxy
 	Function that asks for two sets of coordinates and then
 	will move from the starting set to the final set.
+```
