@@ -16,14 +16,15 @@ while true; do
 done
 
 # Move to x - 0, y - centre
-# y centre is currently hardcoded but looking to fix by using baked in variable (if it exists)
+# First move entire thing to centre, then move down to x - 0
+echo -ne 'MOV:CENTRE\n' > /dev/ttyUSB0
 echo -ne 'X:MOV:ABS 0\n' > /dev/ttyUSB0
-echo -ne 'Y:MOV:ABS 5161\n' > /dev/ttyUSB0
+
 
 # Move to x maximum (also currently baked in, will fix if baked in variables are fixable)
 echo -ne 'X:MOV:ABS 10257\n' > /dev/ttyUSB0
 echo "Moving to X-MAX now..."
 
-
+# add while loop that sleeps here, which will check every X seconds whether or not the device has reached its required position. then will say "DONE!" This most likely wont work, as the only wayto know if its reached its required position is to have cat within this script...look into this
 
 

@@ -16,8 +16,11 @@ while true; do
 done
 
 # Move to x - centre, y - 0
-# ensure CENTRE actually works
-echo -ne 'X:MOV:CENTRE\n' > /dev/ttyUSB0
+# MOV:CENTER moves x and y to centre, then Y to zero, pause between to allow for this.
+echo -ne 'MOV:CENTRE\n' > /dev/ttyUSB0
+# It takes 15s for our board to move between opposite corners (BL->UR)
+# sleep 15s
+
 echo -ne 'Y:MOV:ABS 0\n' > /dev/ttyUSB0
 
 # Move to y maximum (also currently baked in, will fix if baked in variables are fixable)
