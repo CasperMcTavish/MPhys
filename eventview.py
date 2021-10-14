@@ -6,8 +6,9 @@ import numpy as np
 # Viewing particular event of particular file.
 # Open the data, apply to variable
 file = "E:\Github\SHProjectSignalDetection\Code\PMTsignals\Run_2_PMT_162_Loc_9_Test_N.root"
+
 # File directory specific, just to remove the E:\PMTsignals\ rubbish
-filename = file[14:]
+filename = file[49:]
 
 # Taking specific cooked run, you can check them in python easily, swap 36 with 35
 tree = uproot.open(file)["Cooked_Run_2_PMT_162_Loc_9_Test_N;36"]
