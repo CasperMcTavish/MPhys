@@ -186,6 +186,12 @@ helpxy() {
 	echo "	Function that asks for two sets of coordinates and then" 	 
 	echo "	will move from the starting set to the final set."
 	echo ""
+	echo "motoron/motoroff"
+	echo "	Function that disables the physical motors of the table."
+	echo "	WHEN DISABLED DO NOT SEND MOVEMENT COMMANDS!"
+	echo "	The table will believe it has moved and update its position, but will not"
+	echo "	have actually moved."
+	echo ""
 	echo "There are more functions available, but they're listed as alias'"
 	echo "To look at them, please go input: nano ~/.bashrc "
 
