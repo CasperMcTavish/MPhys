@@ -139,6 +139,19 @@ inputxy() {
 }
 
 
+motoroff() {
+	# Turn the motors off
+	echo "Motors disabled."
+	echo -ne 'X:DISABLE\n' > /dev/ttyUSB0
+	echo -ne 'Y:DISABLE\n' > /dev/ttyUSB0
+}
+
+motoron() {
+	# Turn the motors on
+        echo "Motors enabled."
+        echo -ne 'X:ENABLE\n' > /dev/ttyUSB0
+        echo -ne 'Y:ENABLE\n' > /dev/ttyUSB0
+}
 
 
 
@@ -149,7 +162,7 @@ helpxy() {
 	echo "========== HELP MENU ============="
 	echo "=================================="
 	echo ""
-	echo "These scripts are for the explicit use in the XY Table and controller developed by University of Edinburgh - School of Physics"
+	echo "These scripts are for using an XY Table and controller developed by University of Edinburgh - School of Physics"
 	echo ""
 	echo "FUNCTIONS LIST:"
 	echo ""
@@ -173,6 +186,9 @@ helpxy() {
 	echo "	Function that asks for two sets of coordinates and then" 	 
 	echo "	will move from the starting set to the final set."
 	echo ""
+	echo "There are more functions available, but they're listed as alias'"
+	echo "To look at them, please go input: nano ~/.bashrc "
+
 }
 
 
