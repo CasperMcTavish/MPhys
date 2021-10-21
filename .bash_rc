@@ -21,3 +21,13 @@ alias clearxy="echo -ne '*CLS\n' > /dev/ttyUSB0"
 # Find x and y absolute positions
 alias xyposxy="echo -ne 'X:ABS?\n' > /dev/ttyUSB0;  echo -ne 'Y:ABS?\n' > /dev/ttyUSB0; echo 'Posted coordinates to cat terminal.'"
 
+# Enable and disable laser function
+alias laseronxy="echo -ne 'LASER ON\n' > /dev/ttyUSB0"
+alias laseroffxy="echo -ne 'LASER OFF\n' > /dev/ttyUSB0"
+
+# Disable motors
+alias motoroffxy="echo -ne 'X:DISABLE\n' > /dev/ttyUSB0; echo -ne 'Y:DISABLE\n' > /dev/ttyUSB0"
+alias motoronxy="echo -ne 'X:ENABLE\n' > /dev/ttyUSB0; echo -ne 'Y:ENABLE\n' > /dev/ttyUSB0
+
+
+
