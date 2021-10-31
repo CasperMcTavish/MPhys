@@ -1,7 +1,7 @@
 # General README
 
 
-Set up for controlling the XY table (and soon its integration with data collection)
+Set up for controlling the XY table (and soon its integration with data collection and analysis)
 Only .sh files required are:
 
   - initxy.sh
