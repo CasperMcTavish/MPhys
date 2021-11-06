@@ -2,7 +2,9 @@
 
 
 Set up for controlling the XY table (and soon its integration with data collection and analysis)
-Only .sh files required are:
+Currently also contains the working documents for analysis of PMT data (XYanalyse.C and XYwrite.C), these include the folders they need to be included with as they are reliant on other C macros.
+
+Only .sh files required for XY table control are:
 
   - initxy.sh
   - scripts.sh
