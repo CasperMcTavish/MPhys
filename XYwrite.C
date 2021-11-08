@@ -11,12 +11,13 @@
 #include <TLatex.h>
 
 	// pathToWrite is where you want to put the file it will write
-void XYwrite(TString rootFileName = "hQ_Fixed_Run_24_PMT_162_Loc_9_Test_N.root", string pathToData = "./",string pathToWrite ="./"){
+void XYwrite(TString rootFileName = "hQ_Fixed_Run_23_PMT_162_Loc_9_Test_N.root", string pathToData = "./",string pathToWrite ="./"){
 		// Collect data
 	Data * data = XYanalysis(rootFileName, pathToData);
 		// Write data
 	std::ofstream xy_results;
 	xy_results.open ("xy_results.txt");
+	xy_results << "File: " << rootFileName << "\n";
 	xy_results << "P:V Ratio = " << data->peakToValley.value << " (" << data->peakToValley.error << ") \n";
 	xy_results << "Efficiency = " << data->efficiency.value << " (" << data->efficiency.error << ") \n";
 	xy_results << "mu = " << data->mu.value << " (" << data->mu.error << ") \n";
@@ -24,3 +25,4 @@ void XYwrite(TString rootFileName = "hQ_Fixed_Run_24_PMT_162_Loc_9_Test_N.root",
 
 
 }
+
