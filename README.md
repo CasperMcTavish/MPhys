@@ -1,10 +1,17 @@
 # General README
 
+This repository contains all the code I am using/working on during my MPhys at UoE
+There are currently 4 folders:
 
-Set up for controlling the XY table (and soon its integration with data collection and analysis)
-Currently also contains the working documents for analysis of PMT data (XYanalyse.C and XYwrite.C), these include the folders they need to be included with as they are reliant on other C macros.
+* XYScripts - Set up for controlling the XY table (and soon its integration with data collection and analysis)
+* Fitting - Deprecated folder that contains all the required .C files for XYanalysis.C to function. Not necessarily required here and in the future may be removed/cut down.
+* Analysis - Contains the up to date analysis files that are used for collecting and analysing our .root PMT data. These files will need to be placed in certain respective directories to function as intented (eg, XYwrite, XYanalysis and efficiency all need to be placed in $WM_ANALYSE/Fitting/ in the watchman repository).
+* Misc Macros - Just scripts and short pieces of code that I have written or modified that have their own uses and such will not be removed.
 
+### Analysis
+Self explanatory from above, will add to this when needed
 
+### XYScripts - XY Table Control
 Only .sh files required for XY table control are:
 
   - initxy.sh
@@ -20,8 +27,7 @@ The bash_rc file contains alias' that are useful for basic tasks, such as pingin
 To apply scripts.sh and use its functions within a terminal, please use the standard: source ./scripts.sh
 
 
-HELP MENU FOR SCRIPTS.SH 
-=============================================
+#### HELP MENU FOR SCRIPTS.SH 
 
 These scripts are for the explicit use in the XY Table and controller developed by University of Edinburgh - School of Physics
 ```
