@@ -4,6 +4,7 @@
 Set up for controlling the XY table (and soon its integration with data collection and analysis)
 Currently also contains the working documents for analysis of PMT data (XYanalyse.C and XYwrite.C), these include the folders they need to be included with as they are reliant on other C macros.
 
+
 Only .sh files required for XY table control are:
 
   - initxy.sh
@@ -45,4 +46,15 @@ fastslicexy
 inputxy
 	Function that asks for two sets of coordinates and then
 	will move from the starting set to the final set.
+
+motoron/motoroff
+
+	Function that disables the physical motors of the table.
+	WHEN DISABLED DO NOT SEND MOVEMENT COMMANDS!
+	The table will believe it has moved and update its position, but will not
+	have actually moved.
+	
+There are more functions available, but they're listed as alias'
+To look at them, please go input: nano ~/.bashrc 
+
 ```
