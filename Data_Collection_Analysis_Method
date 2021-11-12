@@ -1,0 +1,30 @@
+just to check that the data is being picked up by the HV system.
+wavedump /etc/wavedump/WaveDumpConfig_PCI_9_10_Ch_NS_150.txt
+
+Using xy table (ensure './initxy.sh' and 'source scripts.sh' has been run within XYScripts folder)
+
+To move to specific positions:
+moveabsxy XXXX YYYY
+
+To turn off/on motors:
+motoroff/motoron
+
+From within $WM_DAQ:
+
+To collect data for:
+- 11.1 mins
+./Run_wavedump_PCI_11p1_mins_10_CH_NS_150.sh
+Uses this config
+ /etc/wavedump/WaveDumpConfig_PCI_CH_10_NS_150.txt
+
+- 3 mins
+./Run_wavedump_PCI_3_mins_10_CH_NS_150.sh
+Uses same config as above
+
+To move data with correct trigger analysis
+./move_10_ch_nom_trig.sh
+
+(Currently, WIP)
+To collect the important fitting analysis from the hQ.root files
+Go to the run directory of interest ($WM_DATA/.../RUN0000NN) and run source XY_move_analyse.sh
+Will collate important details in text file.
