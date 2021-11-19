@@ -22,7 +22,7 @@ typedef struct {
   ValueWithError peakToValley;
   ValueWithError efficiency;
   ValueWithError peakTime;
-  float gain;
+  ValueWithError gain;
 } Data;
 
 Data* XYanalysis(TString rootFileName = "hQ_Fixed_Run_24_PMT_162_Loc_9_Test_N.root", string pathToData = "./"){
@@ -51,8 +51,8 @@ Data* XYanalysis(TString rootFileName = "hQ_Fixed_Run_24_PMT_162_Loc_9_Test_N.ro
 	//Return data
 	data->mu = result->mu;
 	data->peakToValley = result->peakToValley;
-	data->gain = result->peak.value/400.;
-	//data->peakTime = need to set this up
+	data->gain.value = result->peak.value/400.;
+	data->gain.error = result->peak.error/400.;
 	//
 	//Test to prove that its easy to pull these values use, and how to do so
 	cout << " P:V ratio = " << data->peakToValley.value << " (" << data->peakToValley.error << ") " << endl;
