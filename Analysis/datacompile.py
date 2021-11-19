@@ -11,7 +11,7 @@ import sys
 
 def collect_data(first_run = 24, last_run = 28, pmt = 162):
     """
-    Collects the data from the xy_results.txt files across multiple runs in a format that allows for easy entry into ROOT for graphical purposes.
+    Collects the data and errors from the xy_results.txt files across multiple runs in a format that allows for easy entry into ROOT for graphical purposes.
 
     The code currently works across the runs sequentially, (24, 25, 26, ...) so be aware of this when running the program.
 
@@ -90,12 +90,6 @@ def collect_data(first_run = 24, last_run = 28, pmt = 162):
                 if not os.path.exists(text_dir):
                     print(text_dir + " does not exist! Creating file...")
                     open(text_dir, 'w').close()
-                # Same as above but for errors
-                if not os.path.exists(text_dir + "_errors"):
-                    print(text_dir + "_errors" + " does not exist! Creating file...")
-                    open(text_dir + "_errors", 'w').close()
-
-
 
 
                 # Append data to the file
@@ -111,9 +105,7 @@ def collect_data(first_run = 24, last_run = 28, pmt = 162):
 
                 # Write data and errors to respective files
                 with open(text_dir, "a") as myfile:
-                    myfile.write(data[0] + "\n")
-                with open(text_dir + "_errors", "a") as myfile:
-                    myfile.write(error + "\n")
+                    myfile.write(data[0] + " " + error + "\n")
 
 
 
