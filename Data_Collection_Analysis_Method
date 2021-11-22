@@ -7,7 +7,7 @@ To move to specific positions:
 moveabsxy XXXX YYYY
 
 To turn off/on motors:
-motoroff/motoron
+motoroffxy/motoronxy
 
 From within $WM_DAQ:
 
@@ -21,10 +21,23 @@ Uses this config
 ./Run_wavedump_PCI_3_mins_10_CH_NS_150.sh
 Uses same config as above
 
+- 1 min
+./Run_wavedump_PCI_1_min_10_CH_NS_150.sh
+
 To move data with correct trigger analysis
 ./move_10_ch_nom_trig.sh
 
 (Currently, WIP)
 To collect the important fitting analysis from the hQ.root files
-Go to the run directory of interest ($WM_DATA/.../RUN0000NN) and run source XY_move_analyse.sh
+Go to the run directory of interest ($WM_DATA/.../RUN0000NN) and run 
+source XY_move_analyse.sh
 Will collate important details in text file.
+
+To then plot data across multiple runs.
+(This is for my (John's) data storage system)
+path to /XYTesting/
+Inside there is a python script called 'datacompile.py'
+Takes 3 arguments: starting run, ending run, PMT number
+Give it these arguments, it will collect the data across these runs and put them in a folder labelled
+PMT162_RUN24-48 or something along these lines in XYTesting.
+From there, place Compile_Plot2D.c in said directory and use as described in its preamble.
