@@ -131,7 +131,7 @@ def automate(start_run, filename):
 
 # Collect arguments to run, if you dont have enough, stop the code
 # This needs to be adjusted to allow for starting run number, positions text file
-if len(sys.argv) == 2:
+if len(sys.argv) == 3:
     # ignoring the name of the python script, so choosing second argument
     automate(sys.argv[1], sys.argv[2])
 else:
