@@ -114,17 +114,16 @@ def automate(start_run, filename):
 		time.sleep(20)
 		# Ping position
 		ping_position()
-		# Turn off table
-		table_off()	
+		## Turn off table NOT INCLUDED CURRENTLY DUE TO WORRIES OF TABLE ACTING UP WHEN TURNED ON OR OFF
+		#table_off()	
 		# Increment through runs. Need to do string->int->string conversion sadly
 		# zfill fills the left side with zeroes, like is expected for RUN titles
 		current_string = str(int(start_run)+i).zfill(6)
 		print("Processing data for RUN" + current_string)
 		# Collect data at position
 		collect_data('./Run_wavedump_PCI_1_min_10_CH_NS_150.sh', './move_10_ch_nom_trig_auto.sh', current_string)
-		# Turn table back on
-		table_on()
-
+		## Turn table back on NOT INCLUDED CURRENTLY DUE TO WORRIES OF TABLE ACTING UP WHEN TURNED ON OR OFF
+		#table_on() 
 	
 	return True
 
