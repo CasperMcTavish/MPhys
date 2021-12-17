@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module auto_fnc_DAQ</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>auto_fnc_DAQ</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/s1739002/auto_fnc/auto_fnc_DAQ.py">/home/s1739002/auto_fnc/auto_fnc_DAQ.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+<a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+<a href="subprocess.html">subprocess</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+<a href="time.html">time</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-automate"><strong>automate</strong></a>(start_run, filename)</dt><dd><tt>The&nbsp;main&nbsp;sequence&nbsp;for&nbsp;code&nbsp;automation<br>
+Collects&nbsp;postional&nbsp;data&nbsp;from&nbsp;the&nbsp;input&nbsp;file.<br>
+Then&nbsp;runs&nbsp;through&nbsp;a&nbsp;loop&nbsp;for&nbsp;these&nbsp;positions.<br>
+For&nbsp;each&nbsp;position&nbsp;it&nbsp;moves&nbsp;the&nbsp;XY&nbsp;carriage,&nbsp;disables&nbsp;it,&nbsp;collects&nbsp;and&nbsp;processes&nbsp;data&nbsp;and&nbsp;then&nbsp;reenables&nbsp;the&nbsp;carriage&nbsp;and&nbsp;moves&nbsp;again<br>
+Does&nbsp;this&nbsp;until&nbsp;all&nbsp;positions&nbsp;have&nbsp;been&nbsp;reached.<br>
+&nbsp;<br>
+:param&nbsp;start_run:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Number&nbsp;of&nbsp;the&nbsp;starting&nbsp;run&nbsp;(e.g.&nbsp;000236)<br>
+:param&nbsp;filename:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Filename&nbsp;of&nbsp;the&nbsp;positions&nbsp;textfile</tt></dd></dl>
+ <dl><dt><a name="-collect_data"><strong>collect_data</strong></a>(collect_bash, process_bash, run_no)</dt><dd><tt>Given&nbsp;two&nbsp;bash&nbsp;scripts&nbsp;to&nbsp;collect&nbsp;and&nbsp;process&nbsp;the&nbsp;data,&nbsp;and&nbsp;the&nbsp;run&nbsp;number.<br>
+This&nbsp;code&nbsp;will&nbsp;use&nbsp;wavedump&nbsp;to&nbsp;collect&nbsp;the&nbsp;data,&nbsp;then&nbsp;use&nbsp;/data_analysis/&nbsp;to&nbsp;move&nbsp;and&nbsp;cook&nbsp;the&nbsp;data.<br>
+&nbsp;<br>
+:param&nbsp;collect_bash:&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;collection&nbsp;bash&nbsp;script<br>
+:param&nbsp;process_bash:&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;Processing&nbsp;bash&nbsp;script<br>
+:param&nbsp;run_no:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;current&nbsp;run&nbsp;number</tt></dd></dl>
+ <dl><dt><a name="-move_table"><strong>move_table</strong></a>(positionx, positiony)</dt><dd><tt>Moves&nbsp;the&nbsp;XY&nbsp;table&nbsp;using&nbsp;positions&nbsp;passed&nbsp;through&nbsp;as&nbsp;strings<br>
+Only&nbsp;works&nbsp;if&nbsp;table&nbsp;is&nbsp;motors&nbsp;are&nbsp;on&nbsp;(<a href="#-table_on">table_on</a>())<br>
+&nbsp;<br>
+:param&nbsp;positionx:&nbsp;Absolute&nbsp;X&nbsp;position&nbsp;for&nbsp;table<br>
+:param&nbsp;positiony:&nbsp;Absolute&nbsp;Y&nbsp;position&nbsp;for&nbsp;table</tt></dd></dl>
+ <dl><dt><a name="-ping_position"><strong>ping_position</strong></a>()</dt><dd><tt>Pings&nbsp;the&nbsp;current&nbsp;position&nbsp;of&nbsp;the&nbsp;XY-table&nbsp;carriage&nbsp;to&nbsp;the&nbsp;designated&nbsp;cat&nbsp;terminal<br>
+For&nbsp;more&nbsp;information&nbsp;on&nbsp;the&nbsp;cat&nbsp;terminal,&nbsp;please&nbsp;look&nbsp;at&nbsp;/XY-Scripts/</tt></dd></dl>
+ <dl><dt><a name="-read_positions"><strong>read_positions</strong></a>(filename)</dt><dd><tt>Reads&nbsp;the&nbsp;positions&nbsp;file&nbsp;out&nbsp;into&nbsp;a&nbsp;list&nbsp;of&nbsp;strings&nbsp;to&nbsp;be&nbsp;used&nbsp;for&nbsp;automation.<br>
+&nbsp;<br>
+:param&nbsp;filename:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name&nbsp;of&nbsp;.txt&nbsp;file<br>
+:return&nbsp;contents:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;positions&nbsp;as&nbsp;strings</tt></dd></dl>
+ <dl><dt><a name="-table_off"><strong>table_off</strong></a>()</dt><dd><tt>Turns&nbsp;the&nbsp;XY-table&nbsp;motors&nbsp;off.</tt></dd></dl>
+ <dl><dt><a name="-table_on"><strong>table_on</strong></a>()</dt><dd><tt>Turns&nbsp;the&nbsp;XY-table&nbsp;motors&nbsp;on.</tt></dd></dl>
+</td></tr></table>
+</body></html>
