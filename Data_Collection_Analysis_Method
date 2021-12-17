@@ -40,4 +40,24 @@ Inside there is a python script called 'datacompile.py'
 Takes 3 arguments: starting run, ending run, PMT number
 Give it these arguments, it will collect the data across these runs and put them in a folder labelled
 PMT162_RUN24-48 or something along these lines in XYTesting.
-From there, place Compile_Plot2D.c in said directory and use as described in its preamble.
+From there, place Compile_Plot2D.c in said directory and use compile_plots.sh with correct text file titles to produce the graphs
+
+==========
+AUTOMATION
+==========
+
+Currently there is automation for data collecting and cooking in the data acquisition folder.
+
+First ensure that you create a file with XY table coordinates laid out as such:
+
+1424 2020
+1524 2020
+1624 2020
+etc
+
+This is moving along the x axis 100 steps each time.
+
+Next, use the file auto_fnc.DAQ.py with the appropriate inputs (starting run, positions_file_name) to automatically collect all the data required automatically.
+
+WIP
+Data analysis will be built in using the above 'datacompile.py', 'compile_plots.sh' and 'Compile_Plot2D.c' files.
