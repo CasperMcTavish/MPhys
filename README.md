@@ -9,7 +9,7 @@ There are currently 4 folders:
 * Automation Code - The basic python script that is (currently) used to collect and cook wavedump data while moving the XY table automatically, without human intervention.
 * Misc Macros - Just scripts and short pieces of code that I have written or modified that have their own uses and such will not be removed.
 
-### Automation Coce
+### Automation Code
 
 #### auto_fnc_DAQ.py
 
