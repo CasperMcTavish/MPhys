@@ -92,6 +92,10 @@ Folder that contains a basic malleable script (plotgraphs.C) that allows for the
 Saved here for ease of use with two input files (.root). Can be changed to have more inputs.
 WIP -> Allow unlimited number of file to be added to the graph if need be.
 
+To run with unique files, input like:
+
+	root "plotgraphs.C(\"Efficiency260.root\",\"Efficiency206.root\")"
+
 ### XYScripts - XY Table Control
 Only .sh files required for XY table control are:
 
