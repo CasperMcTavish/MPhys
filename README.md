@@ -95,6 +95,7 @@ WIP -> Allow unlimited number of file to be added to the graph if need be.
 To run with unique files, input like:
 
 	root "plotgraphs.C(\"Efficiency260.root\",\"Efficiency206.root\")"
+Or change default files within plotgraphs.C
 
 ### XYScripts - XY Table Control
 Only .sh files required for XY table control are:
