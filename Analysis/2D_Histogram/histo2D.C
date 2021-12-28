@@ -24,11 +24,13 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	string title = "2D Histogram of ";
 	title += data;
 	TCanvas *c1 = new TCanvas("c1", title.c_str());
-	c1->SetRightMargin(0.09);
-  	c1->SetLeftMargin(0.15);
-  	c1->SetBottomMargin(0.15);
+	//c1->SetRightMargin(0.09);
+  	//c1->SetLeftMargin(0.15);
+  	//c1->SetBottomMargin(0.15);
  	
+	// Create Graph 2D
 	TGraph2D* graph = new TGraph2D();
+	graph->SetTitle(title.c_str());
 
 	// Apply file data to TGraph2D
 	int i = 0;
@@ -57,5 +59,16 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	// plot graphs
 	graph->SetMarkerStyle(20);
 	graph->Draw("COLZ");
+
+	// Save graph
+	string file_name = posdata;
+	file_name += "-";
+	file_name += data;
+	string file_name_pdf = file_name;
+	file_name_pdf += ".pdf";
+	file_name += ".root";
+	c1->SaveAs(file_name_pdf.c_str());
+	c1->SaveAs(file_name.c_str());
+
 
 }		
