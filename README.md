@@ -87,6 +87,9 @@ xy_fit_results.txt is another file that is produced as explained in **XY_move_an
 
 **Currently out of date within this repo. Includes above values with errors with current code.**
 
+### 2D_Histogram
+Folder that contains the macro (histo2D.C) for creating a 2D histogram plot with position plots (Positions2D) and a value (efficiency, PV, etc). Acts a bit strange if you only plot along the x and y axis (will fill in the gaps). So need a valid amount of data for worthwhile information.
+
 ### DataCompilation
 Folder that contains a basic malleable script (plotgraphs.C) that allows for the overlay of multiple sets of PMT data.
 Saved here for ease of use with two input files (.root). Can be changed to have more inputs.
