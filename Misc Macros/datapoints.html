@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module datapoints</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>datapoints</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:e%3A%5Cgithub%5Cmphys%5Cdatapoints.py">e:\github\mphys\datapoints.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="math.html">math</a><br>
+</td><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="matplotlib.pyplot.html">matplotlib.pyplot</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-circle_points"><strong>circle_points</strong></a>(centre, radius, no_of_scans)</dt><dd><tt>Plots&nbsp;a&nbsp;circle&nbsp;of&nbsp;points&nbsp;with&nbsp;a&nbsp;radius&nbsp;R&nbsp;around&nbsp;a&nbsp;centre&nbsp;position<br>
+&nbsp;<br>
+:param&nbsp;centre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;or&nbsp;tuple&nbsp;of&nbsp;centre&nbsp;coordinates.&nbsp;Eg&nbsp;[2000,&nbsp;3000]<br>
+:param&nbsp;radius:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;radius&nbsp;of&nbsp;the&nbsp;ring<br>
+:param&nbsp;no_of_scans:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;number&nbsp;of&nbsp;points&nbsp;along&nbsp;the&nbsp;ring<br>
+:return&nbsp;positions:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;[x,y]&nbsp;coordinates&nbsp;on&nbsp;ring.</tt></dd></dl>
+ <dl><dt><a name="-collate_datapoints"><strong>collate_datapoints</strong></a>(centre, radii, scans_per_radii)</dt><dd><tt>Collects&nbsp;the&nbsp;datapoints&nbsp;from&nbsp;circle_points&nbsp;for&nbsp;multiple&nbsp;Radii<br>
+&nbsp;<br>
+:param&nbsp;centre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;or&nbsp;tuple&nbsp;of&nbsp;centre&nbsp;coordinates.&nbsp;Eg&nbsp;[2000,&nbsp;3000]<br>
+:param&nbsp;radii:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;radii&nbsp;values&nbsp;for&nbsp;different&nbsp;rings<br>
+:param&nbsp;scans_per_radii:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;the&nbsp;number&nbsp;of&nbsp;points&nbsp;on&nbsp;each&nbsp;ring<br>
+:return&nbsp;position:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;the&nbsp;[x,y]&nbsp;positions&nbsp;for&nbsp;all&nbsp;rings</tt></dd></dl>
+ <dl><dt><a name="-plot_points"><strong>plot_points</strong></a>(positions, radius, centre)</dt><dd><tt>Plots&nbsp;a&nbsp;circle&nbsp;with&nbsp;radius&nbsp;R&nbsp;to&nbsp;represent&nbsp;the&nbsp;PMT,&nbsp;then&nbsp;plots&nbsp;each&nbsp;datapoint&nbsp;within&nbsp;the&nbsp;circle&nbsp;from&nbsp;the&nbsp;position&nbsp;list&nbsp;obtained&nbsp;via&nbsp;collate_datapoints<br>
+&nbsp;<br>
+:param&nbsp;positions:&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;the&nbsp;[x,y]&nbsp;positions&nbsp;across&nbsp;the&nbsp;entire&nbsp;PMT<br>
+:param&nbsp;radius:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Radius&nbsp;of&nbsp;the&nbsp;PMT&nbsp;(126.5mm&nbsp;which&nbsp;is&nbsp;approximately&nbsp;1796&nbsp;steps&nbsp;on&nbsp;XY-table)<br>
+:param&nbsp;centre:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[x,y]&nbsp;position&nbsp;for&nbsp;the&nbsp;centre&nbsp;axis</tt></dd></dl>
+ <dl><dt><a name="-pos_write"><strong>pos_write</strong></a>(positions)</dt><dd><tt>Writes&nbsp;the&nbsp;data&nbsp;points&nbsp;to&nbsp;file&nbsp;'ring_positions.txt'&nbsp;in&nbsp;the&nbsp;correct&nbsp;format&nbsp;for&nbsp;XY-table&nbsp;automation<br>
+eg.<br>
+3002&nbsp;2200<br>
+3232&nbsp;2400<br>
+...<br>
+&nbsp;<br>
+:param&nbsp;positions:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;list&nbsp;of&nbsp;positions&nbsp;to&nbsp;be&nbsp;written&nbsp;to&nbsp;the&nbsp;file</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>j</strong> = 4<br>
+<strong>position_values</strong> = [[4462, 5535], [4817, 5535], [4713, 5786], [4462, 5890], [4211, 5786], [4107, 5535], [4211, 5284], [4462, 5180], [4713, 5284], [5172, 5535], [5077, 5890], [4817, 6150], [4462, 6245], [4107, 6150], [3847, 5890], [3752, 5535], [3847, 5180], [4107, 4920], [4462, 4825], [4817, 4920], ...]<br>
+<strong>radi_calc</strong> = [355, 710, 1065, 1420, 1775]</td></tr></table>
+</body></html>
