@@ -7,7 +7,7 @@ There are currently 4 folders:
 * Fitting - Deprecated folder that contains all the required .C files for XYanalysis.C to function. Not necessarily required here and in the future may be removed/cut down.
 * Analysis - Contains the up to date analysis files that are used for collecting and analysing our .root PMT data. These files will need to be placed in certain respective directories to function as intented (eg, XYwrite, XYanalysis and efficiency all need to be placed in $WM_ANALYSE/Fitting/ in the watchman repository).
 * Automation Code - The basic python script that is (currently) used to collect and cook wavedump data while moving the XY table automatically, without human intervention.
-* Misc Macros - Just scripts and short pieces of code that I have written or modified that have their own uses and such will not be removed.
+* Misc Macros - Just scripts and short pieces of code that I have written or modified that have their own uses and such will not be removed. Includes the code that produces a data point file for automated PMT collection.
 
 ### Automation Code
 
