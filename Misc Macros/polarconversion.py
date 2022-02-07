@@ -34,12 +34,12 @@ def conversion(filename, centre):
 
         # Apply polar conversion to give correct theta and R components
         # due to how polar works, this is a bit more complex (quadrant based)
-        
+
         # convert to z = x+iy
         z = spl_pos[0] + 1j*spl_pos[1]
         theta = angle(z)
         R = abs(z)
-        
+
         # central point
         #if (spl_pos[0] == 0) and (spl_pos[1] == 0):
         #    theta = 0
@@ -70,4 +70,3 @@ def conversion(filename, centre):
 
 # current centre and textfile
 conversion("datapoints_115_0_270.txt", [4946, 5595])
-
