@@ -30,10 +30,10 @@ def analyse_run(run_no, base_dir):
     # Remove hidden characters to give correct directory format
     base_dir = base_dir[2:]
     base_dir = base_dir[:-4]
-   
+
     # Create string format for directory movement
     string_base = "John/XYTesting/"
-    
+
     # Create proper run formatting: RUN0000NN
     run = "RUN"
     run += str(run_no).zfill(6)
@@ -49,7 +49,7 @@ def analyse_run(run_no, base_dir):
         # Run analysis code
         # NOTE, If XY
         subprocess.call(["source XY_move_analyse.sh"], shell=True)
-        
+
 
 def automate_analyse(start_run, end_run):
     # Creates the loop over which the data is analysed
@@ -57,7 +57,7 @@ def automate_analyse(start_run, end_run):
     i = start_run
 
     # Create string format for directory movement
- 
+
     # Hacky method to find the true directory from the $WM_DAQ alias.
     # Not clean, may break later, can be hard-coded in, but for the time being this should work across multiple machines without issue
 
@@ -68,12 +68,17 @@ def automate_analyse(start_run, end_run):
 
     # +1 to ensure that the end_run is included
     while (i < end_run+1):
-        analyse_run(i, processes)    
+        analyse_run(i, processes)
         i+=1
 
-automate_analyse(24, 28)
+#automate_analyse(24, 28)
 
 
-
-
-
+# Collect arguments to run, if you dont have enough, stop the code
+# This needs to be adjusted to allow for starting run numbers
+if len(sys.argv) == 3:
+    # ignoring the name of the python script, so choosing second argument
+    automate_analyse(sys.argv[1], sys.argv[2])
+else:
+    print("collect_data takes exactly 2 arguments (" + str(len(sys.argv)-1) + ") given")
+    print("Please input starting run, and ending run")
