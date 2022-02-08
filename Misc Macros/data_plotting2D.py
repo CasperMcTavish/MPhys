@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 def read_file(filename):
     with open(filename) as f:
@@ -28,18 +29,16 @@ def splitter(array):
     return list1, list2
 
 # read in correct files
-azi_rad = read_file("datapoints_115_0_270.txt")
+azi_rad = read_file("datapoints_115_0_270.txt_polar_mm")
 vals = read_file("Efficiency")
+# non polar
+positions = read_file("datapoints_115_0_270.txt")
 
 azi, rad = splitter(azi_rad)
-print(azi)
-print("=================")
-print(rad)
 eff, err = splitter(vals)
+x, y = splitter(positions)
 
-print(eff)
-print("=================")
-print(err)
+
 # two input arrays
 #azimut = np.random.rand(3000)*2*np.pi
 #radius = np.random.rayleigh(29, size=3000)
@@ -59,6 +58,29 @@ print(err)
 #fig.colorbar(pc)
 
 #plt.show()
+
+# Bar chart
+fig = plt.figure()
+ax1 = fig.add_subplot(projection='3d')
+
+# Formatting for bar chart
+x = np.array(x)
+y = np.array(y)
+eff = np.array(eff)
+bottom = np.zeros_like(x)
+top = x+y
+width = depth = 250
+
+# setting up colors for bars
+
+# add a bit more sensitivity at higher values
+colors = plt.cm.jet(eff.flatten()/float(eff.max()))
+
+ax1.bar3d(x, y, np.zeros(len(eff)), width, depth, eff, shade=True, color=colors)
+fig.colorbar(plt.cm.ScalarMappable(cmap = 'jet'), ax = ax1)
+plt.show()
+
+
 
 fig = plt.figure()
 ax = fig.add_subplot(projection='3d')
