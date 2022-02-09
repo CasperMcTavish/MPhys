@@ -223,6 +223,6 @@ def square_points(centre, radius, resolution):
 
 #plot_points(position_values, 1796, [4462, 5535])
 
-position_values = square_points([4946,5595], 1800, 300)
+position_values = square_points([4946,5595], 1800, 350)
 plot_points(position_values, 1800, [4946, 5595])
 pos_write(position_values, "grid_positions")
