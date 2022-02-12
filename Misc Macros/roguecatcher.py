@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 
 # THIS CODE IS MADE TO SKIM THROUGH THE DIFFERENT FILE TYPES FROM OUTPUT DATA, AND CORRECT ANY ROGUE VARIABLES
 # SHOWN BELOW
@@ -49,7 +50,7 @@ def read_file(filename):
     # convert to floats in this case
     return contents
 
-def write_file(filename, data, suffix):
+def write_file(filename, data, errors, suffix):
     """
     Hand over standard array of data and write to file
     eg File:
@@ -67,7 +68,7 @@ def write_file(filename, data, suffix):
     with open(file_name_new, "w") as f:
         for i in range(len(data)):
             # reformatting
-            pos = str(data[i])
+            pos = str(str(data[i]) + " " + str(errors[i]))
             # FOR COORDINATE SYSTEM
             #pos = str(new_positional[i])
             #pos = pos.strip("[]")
@@ -89,6 +90,8 @@ def rogue_var_cutter(data_type, file_name):
     """
 
     # No switch statements in python...so we have to do this the ugly way
+    # Ensure data_type is integer
+    data_type = int(data_type)
 
     # PV
     if (data_type == 0):
@@ -100,8 +103,9 @@ def rogue_var_cutter(data_type, file_name):
         for i in range(len(values)):
             if (values[i] < 0) or (values[i] > 7):
                 values[i] = 1
+                errors[i] = 0
         # Write
-        write_file(file_name, values, "clean")
+        write_file(file_name, values, errors, "clean")
 
     # Gain
     elif (data_type == 1):
@@ -113,8 +117,9 @@ def rogue_var_cutter(data_type, file_name):
         for i in range(len(values)):
             if (values[i] < 0) or (values[i] > 2.0e07):
                 values[i] = 0.5e07
+                errors[i] = 0
         # Write
-        write_file(file_name, values, "clean")
+        write_file(file_name, values, errors, "clean")
 
 
     # Efficiency
@@ -127,8 +132,9 @@ def rogue_var_cutter(data_type, file_name):
         for i in range(len(values)):
             if (values[i] < 0) or (values[i] > 0.2):
                 values[i] = 0
+                errors[i] = 0
         # Write
-        write_file(file_name, values, "clean")
+        write_file(file_name, values, errors, "clean")
 
 
     # Mu
@@ -141,8 +147,9 @@ def rogue_var_cutter(data_type, file_name):
         for i in range(len(values)):
             if (values[i] < 0) or (values[i] > 0.2):
                 values[i] = 0
+                errors[i] = 0
         # Write
-        write_file(file_name, values, "clean")
+        write_file(file_name, values, errors, "clean")
 
     # LED Delay
     elif (data_type == 4):
@@ -154,12 +161,19 @@ def rogue_var_cutter(data_type, file_name):
         for i in range(len(values)):
             if (values[i] < 80) or (values[i] > 120):
                 values[i] = 100
+                errors[i] = 0
         # Write
-        write_file(file_name, values, "clean")
+        write_file(file_name, values, errors, "clean")
     # Final catch
     else:
         print("Please input a valid value for data_type:\n0 - P:V Ratio\n1 - Gain\n2 - Efficiency\n3 - Mu\n4 - LED Delay")
         return
 
 # APPLY DOWN HERE
-rogue_var_cutter(0, "P_V_Ratio")
+#rogue_var_cutter(0, "P_V_Ratio")
+
+if len(sys.argv) == 3:
+    # ignoring the name of the python script
+    rogue_var_cutter(sys.argv[1], sys.argv[2])
+else:
+    print("collect_data takes exactly 2 arguments (" + str(len(sys.argv)-1) + ") given.\nPlease input number relative to data being cleaned:\n0 - P:V Ratio\n1 - Gain\n2 - Efficiency\n3 - Mu\n4 - LED Delay\n\nAnd text file containing the relevant data...")
