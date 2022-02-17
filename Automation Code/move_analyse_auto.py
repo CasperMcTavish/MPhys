@@ -4,7 +4,7 @@
 from contextlib import contextmanager
 import os
 import subprocess
-
+import sys
 
 # Create context manager to control moving to each RUN directory
 
@@ -54,7 +54,7 @@ def analyse_run(run_no, base_dir):
 def automate_analyse(start_run, end_run):
     # Creates the loop over which the data is analysed
     # Input the starting run, and the ending run, will loop over and allow analysis
-    i = start_run
+    i = int(start_run)
 
     # Create string format for directory movement
 
@@ -67,7 +67,7 @@ def automate_analyse(start_run, end_run):
 
 
     # +1 to ensure that the end_run is included
-    while (i < end_run+1):
+    while (i < int(end_run)+1):
         analyse_run(i, processes)
         i+=1
 
