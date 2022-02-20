@@ -12,7 +12,7 @@ double stream(ifstream& stream) {
 }
 
 void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency2D"){
-	
+
 	// setup streaming files
 	std::ifstream in;
 	in.open(posdata.c_str());
@@ -23,15 +23,18 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	// Setting up canvas and margins
 	string title = "2D Histogram of ";
 	title += data;
-	TCanvas *c1 = new TCanvas("c1", title.c_str());
-	//c1->SetRightMargin(0.09);
-  	//c1->SetLeftMargin(0.15);
-  	//c1->SetBottomMargin(0.15);
- 	
+	title += "; Steps(1000s)/mm(100s); Steps(1000s)/mm(100s)";
+	TCanvas *c1 = new TCanvas("c1", title.c_str(), 800, 800);
+	c1->SetRightMargin(0.12);
+  	c1->SetLeftMargin(0.12);
+  	c1->SetBottomMargin(0.1);
+
 	// Create Graph 2D
 	TGraph2D* graph = new TGraph2D();
+	TGraph2D* textbox = new TGraph2D();
+		// set bin limits based on position of data points
+        TH2D* h2 = new TH2D("Info",title.c_str(),21,-134,134,21,-134,134);
 	graph->SetTitle(title.c_str());
-
 	// Apply file data to TGraph2D
 	int i = 0;
 	int ok = true;
@@ -49,17 +52,24 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	  else {
 	       // Apply data to TGraph2D
 	       graph->SetPoint(i, val1, val2, val3);
+		h2->Fill(val1,val2,val3);
+               //h2->Fill(val1,val2);
+	        //cout << " val1 = " << val1 << endl;
+	       //textbox->SetPoint(i, val1, val2, val3);
 	       ++i;
 	  }
 
 	}
 	in.close();
-	inn.close();
 
 	// plot graphs
 	graph->SetMarkerStyle(20);
 	graph->Draw("COLZ");
-
+	// remove legend
+	h2->SetStats(0);
+        h2->Draw("colz ");
+	//textbox->SetMarkerColor(kRed);
+	//textbox->Draw("TEXT SAME");
 	// Save graph
 	string file_name = posdata;
 	file_name += "-";
@@ -71,4 +81,4 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	c1->SaveAs(file_name.c_str());
 
 
-}		
+}
