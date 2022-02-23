@@ -60,7 +60,7 @@ def main(file_name):
     # Write new normalised file
     norm_positions = [data[i][0]/max_val for i in range(len(data))]
     errors = [data[i][1] for i in range(len(data))]
-    print(norm_positions)
+    #print(norm_positions)
 
 
     write_file(file_name, norm_positions, errors, "norm")
