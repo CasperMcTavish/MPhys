@@ -12,7 +12,7 @@ double stream(ifstream& stream) {
 }
 
 void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency2D"){
-
+	
 	// setup streaming files
 	std::ifstream in;
 	in.open(posdata.c_str());
@@ -28,12 +28,13 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	c1->SetRightMargin(0.12);
   	c1->SetLeftMargin(0.12);
   	c1->SetBottomMargin(0.1);
-
+ 	
 	// Create Graph 2D
 	TGraph2D* graph = new TGraph2D();
 	TGraph2D* textbox = new TGraph2D();
-		// set bin limits based on position of data points
+	
         TH2D* h2 = new TH2D("Info",title.c_str(),21,-134,134,21,-134,134);
+		
 	graph->SetTitle(title.c_str());
 	// Apply file data to TGraph2D
 	int i = 0;
@@ -45,6 +46,7 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
           double val2 = stream(in);
           double val3 = stream(inn);
           double val4 = stream(inn);
+	  //cout << "Entry " << i << endl;
 	  // Checks both files for if they are at the end of file or if stream is good.
           if ((in.eof()  == true || in.good() == false) && (inn.eof()  == true || inn.good() == false)) {
 	     ok =false;
@@ -52,8 +54,12 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	  else {
 	       // Apply data to TGraph2D
 	       graph->SetPoint(i, val1, val2, val3);
-		h2->Fill(val1,val2,val3);
-               //h2->Fill(val1,val2);
+	       
+	       h2->Fill(val1,val2,val3);
+	       // set errors
+	       //cout << "Error " << val4 << endl;
+	       h2->SetBinError(i, val4);
+               //h2->Fill(val1,val2);	
 	        //cout << " val1 = " << val1 << endl;
 	       //textbox->SetPoint(i, val1, val2, val3);
 	       ++i;
@@ -62,12 +68,15 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	}
 	in.close();
 
-	// plot graphs
+	// Turn off errors (currently busted otherwise)
+	h2->Sumw2(kFALSE);
+
+	// plot graphs	
 	graph->SetMarkerStyle(20);
 	graph->Draw("COLZ");
 	// remove legend
 	h2->SetStats(0);
-        h2->Draw("colz ");
+        h2->Draw("colz");
 	//textbox->SetMarkerColor(kRed);
 	//textbox->Draw("TEXT SAME");
 	// Save graph
@@ -81,4 +90,4 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	c1->SaveAs(file_name.c_str());
 
 
-}
+}		
