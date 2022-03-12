@@ -85,11 +85,11 @@ void histo2Ddeltatest(std::string file1 = "efficiencyclean.root", std::string fi
   // Collect first histo
   TFile *f1 = new TFile(file1.c_str(), "read");
   // this is either called h2 or "Info", we'll find out quickly
-  TH2D *h1 = (TH2D*)f1->Get("h2");
+  TH2D *h1 = (TH2D*)f1->Get("Info");
 
   // Collect second histo
   TFile *f2 = new TFile(file2.c_str(), "read");
-  TH2D *h3 = (TH2D*)f2->Get("h2");
+  TH2D *h3 = (TH2D*)f2->Get("Info");
 
   // Get difference
   TH2D *h_out = (TH2D*)h1->Clone("hist1 - hist2");

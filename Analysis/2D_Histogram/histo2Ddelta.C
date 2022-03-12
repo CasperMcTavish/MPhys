@@ -13,7 +13,7 @@ double stream(ifstream& stream) {
 
 
 // Takes the difference between two histograms
-void histo2Ddelta(std::string posdata = "Positions2D", std::string data = "Efficiency2D", std::string posdata2 = "Positions2D", std::string data2 = "Efficiency2D"){
+void histo2Ddelta(std::string posdata = "grid_positions_317.txt_mm", std::string data = "Efficiencyclean.txtnorm.txt", std::string posdata2 = "grid_positions_317.txt_rotated90_mm", std::string data2 = "Efficiencyclean90.txtnorm.txt"){
 
 	// setup streaming files
 
@@ -26,10 +26,10 @@ void histo2Ddelta(std::string posdata = "Positions2D", std::string data = "Effic
 
   // 2
   std::ifstream innn;
-	innn.open(posdata.c_str());
+	innn.open(posdata2.c_str());
 
 	std::ifstream innnn;
-	innnn.open(data.c_str());
+	innnn.open(data2.c_str());
 
 
 	// Setting up canvas and margins
@@ -40,6 +40,7 @@ void histo2Ddelta(std::string posdata = "Positions2D", std::string data = "Effic
 	c1->SetRightMargin(0.12);
   	c1->SetLeftMargin(0.12);
   	c1->SetBottomMargin(0.1);
+	//c1->Divide(3,1);
 
 	// Create Graph 2D
 	TGraph2D* graph = new TGraph2D();
@@ -82,8 +83,8 @@ void histo2Ddelta(std::string posdata = "Positions2D", std::string data = "Effic
 
   // 2
   // Apply file data to TGraph2D
-  int i = 0;
-  int ok = true;
+  i = 0;
+  ok = true;
   while (ok) {
     // Stream values in, val1 is x, val2 is y, val3 is efficiency, val4 is uncertainty
     // This system can be functionalised
@@ -118,13 +119,31 @@ void histo2Ddelta(std::string posdata = "Positions2D", std::string data = "Effic
   // Subtract
   TH2D* h4 = new TH2D("Info3",title.c_str(),21,-134,134,21,-134,134);
   h4->Add(h2, h3, 1.0, -1.0);
+  h4->SetEntries(1);
 
+/*
 	// plot graphs
+	c1->cd(1);
 	graph->SetMarkerStyle(20);
 	graph->Draw("COLZ");
-	// remove legend
+ 	h2->SetStats(0);
+	h2->Draw("colz");
+	
+	c1->cd(2);
+	graph->SetMarkerStyle(20);
+	graph->Draw("COLZ");
+ 	h3->SetStats(0);
+	h3->Draw("colz");
+
+	c1->cd(3);
+
+*/
+	//gStyle->SetPalette(0);
+	//TColor::InvertPalette();
+	graph->SetMarkerStyle(20);
+	graph->Draw("COLZ");
 	h4->SetStats(0);
-  h4->Draw("colz");
+	h4->Draw("COLZ");
 	//textbox->SetMarkerColor(kRed);
 	//textbox->Draw("TEXT SAME");
 	// Save graph
