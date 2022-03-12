@@ -43,35 +43,46 @@ def write_file(filename, data, errors, suffix):
             #pos = pos.replace(",","")
             f.write(pos + "\n")
 
-def main(file_name):
-    # Find the largest value in our read_file, and use this to normalise and write our data.
-    data = read_file(file_name)
-    print(data[0], data[0][0])
+def main(file_name1, file_name2):
+    # Find the largest value in our two read_files, and use this to normalise and write our data.
+    data1 = read_file(file_name1)
+    data2 = read_file(file_name2)
+    print(data1[0], data2[0][0])
 
 
     max_val = 0
     # Loop over list looking for max values
     for i in range(len(data)):
-        if (data[i][0] > max_val):
-            max_val = data[i][0]
-            max_err = data[i][1]
+        if (data1[i][0] > max_val):
+            max_val = data1[i][0]
+            max_err = data1[i][1]
+
+        if (data2[i][0] > max_val):
+            max_val = data2[i][0]
+            max_err = data2[i][1]
 
     print("Maximum value found at: {:.2f}".format(max_val))
 
-    # Write new normalised file
-    norm_positions = [data[i][0]/max_val for i in range(len(data))]
+    # Write new normalised files
+    norm_positions1 = [data[i][0]/max_val for i in range(len(data1))]
     # apply appropriate error scaling here
-    errors = [(data[i][0]/max_val) * data[i][1] for i in range(len(data))]
+    errors1 = [(data[i][0]/max_val) * data[i][1] for i in range(len(data1))]
     #print(norm_positions)
 
+    # Write new normalised files
+    norm_positions2 = [data2[i][0]/max_val for i in range(len(data2))]
+    # apply appropriate error scaling here
+    errors2 = [(data2[i][0]/max_val) * data2[i][1] for i in range(len(data2))]
 
-    write_file(file_name, norm_positions, errors, "norm")
+
+    write_file(file_name1, norm_positions1, errors1, "norm")
+    write_file(file_name2, norm_positions2, errors2, "norm")
 
 
 # Collect arguments to run, if you dont have enough, stop the code
 
-if len(sys.argv) == 2:
+if len(sys.argv) == 3:
     # ignoring the name of the python script
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[2])
 else:
-    print("collect_data takes exactly 1 argument. (" + str(len(sys.argv)-1) + ") given\nPlease input file name")
+    print("collect_data takes exactly 1 argument. (" + str(len(sys.argv)-1) + ") given\nPlease input two file names")
