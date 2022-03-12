@@ -1,7 +1,8 @@
 import math
 import matplotlib.pyplot as plt
 import numpy as np
-
+import matplotlib.font_manager as font_manager
+import matplotlib as mpl
 
 # Code to determine PMT measuring positions by taking a grid across the PMT surface, with certain distances between each grid point
 # Then this makes a file with the data
@@ -112,6 +113,15 @@ def plot_points(positions, radius, centre):
     # plot the points on the sphere of set radius in matplot lib
     # good way to visualise the points, as otherwise its hard to understand where they are just by the numbers
 
+
+
+    # font nonsense
+    mpl.rcParams['font.family']='serif'
+    #hfont = {'fontname':'Computer Modern'}
+    cmfont = font_manager.FontProperties(fname=mpl.get_data_path() + '/fonts/ttf/cmr10.ttf')
+    mpl.rcParams['font.serif']=cmfont.get_name()
+    mpl.rcParams['mathtext.fontset']='cm'
+    mpl.rcParams['axes.unicode_minus']=False
     # create linspace of angles
     angle = np.linspace(0, 2 * math.pi, 150)
 
@@ -126,7 +136,11 @@ def plot_points(positions, radius, centre):
     axes.plot(x_circ, y_circ)
     axes.set_aspect (1)
 
-    plt.title("Data points taken across PMT")
+
+
+    plt.title("Data points taken across PMT", fontsize = 22)
+    plt.xticks(fontsize=14)
+    plt.yticks(fontsize=14)
     file_name = "datapoints_"
     file_name += str(len(positions))
     file_name += ".pdf"

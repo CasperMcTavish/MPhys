@@ -54,12 +54,14 @@ def main(file_name):
     for i in range(len(data)):
         if (data[i][0] > max_val):
             max_val = data[i][0]
+            max_err = data[i][1]
 
     print("Maximum value found at: {:.2f}".format(max_val))
 
     # Write new normalised file
     norm_positions = [data[i][0]/max_val for i in range(len(data))]
-    errors = [data[i][1] for i in range(len(data))]
+    # apply appropriate error scaling here
+    errors = [(data[i][0]/max_val) * data[i][1] for i in range(len(data))]
     #print(norm_positions)
 
 
