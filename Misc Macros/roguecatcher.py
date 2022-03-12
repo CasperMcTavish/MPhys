@@ -25,13 +25,14 @@ import matplotlib.pyplot as plt
 # UNCHANGED, NORMALLY FINE
 
 # Plotting function
-def plot_points(positions, radius, centre):
+def plot_points(positions, radius, centre, data_type):
     '''
     Plots a circle with radius R to represent the PMT, then plots each datapoint within the circle from the position list obtained via collate_datapoints
 
     :param positions:    List of the [x,y] positions across the entire PMT
     :param radius:       Radius of the PMT (126.5mm which is approximately 1796 steps on XY-table)
     :param centre:       [x,y] position for the centre axis
+    :param data_type 	 For plotting purposes, tells you the different data types
     '''
     # plot the points on the sphere of set radius in matplot lib
     # good way to visualise the points, as otherwise its hard to understand where they are just by the numbers
@@ -51,10 +52,22 @@ def plot_points(positions, radius, centre):
     axes.set_aspect (1)
 
     plt.title("Rogue Data points taken across PMT")
-    #file_name = "rogues"
-    #file_name += str(len(positions))
-    #file_name += ".pdf"
-    #plt.savefig(file_name)
+    file_name = "rogues"
+    file_name += str(len(positions))
+    # name specific to datatype
+    if (data_type==0):
+        file_name += "PV"
+    elif (data_type==1):
+        file_name += "Gain"
+    elif (data_type==2):
+        file_name += "Efficiency"
+    elif (data_type ==3):
+        file_name += "Mu"
+    elif (data_type ==4):
+        file_name += "LED Delay"
+
+    file_name += ".pdf"
+    plt.savefig(file_name)
     plt.show()
 
 
@@ -127,8 +140,7 @@ def radius_check(centre, radius, x, y):
     r = np.sqrt(x**2 + y**2)
     #print(r)
 
-    # check if less than radius return true, otherwise return false
-	# add +100 to radius to include outer edges
+    # check if less than radius return true, otherwise return falso
     if (r > radius):
         #print("Out of radius")
         return False
@@ -160,15 +172,15 @@ def rogue_var_cutter(data_type, file_name, position_name, centre, radius):
 
     # Read position file
     positions = read_file(position_name)
-    x, y = splitter(positions)
+    x, y = splitter(positions) 
     # No switch statements in python...so we have to do this the ugly way
     # Ensure data_type is integer
     data_type = int(data_type)
-
+    
     # count the number of points out of range and number of rogue counters
     counter = 0
     r_counter = 0
-
+    
     # collect rogue position list
     pos_list = []
     # PV
@@ -206,7 +218,7 @@ def rogue_var_cutter(data_type, file_name, position_name, centre, radius):
         for i in range(len(values)):
             # check within radius of PMT
             if (radius_check(centre, radius, x[i], y[i])):
-                if (values[i] < 0) or (values[i] > 2.0e07):
+                if (values[i] < 0) or (values[i] > 1.4e07):
                     r_counter+=1
                     values[i] = 0.5e07
                     errors[i] = 0
@@ -215,7 +227,7 @@ def rogue_var_cutter(data_type, file_name, position_name, centre, radius):
             else:
                 counter +=1
                 values[i] = 0
-                errors[i] = 0
+                values[i] = 0
             # Write
         write_file(file_name, values, errors, "clean")
 
@@ -230,11 +242,10 @@ def rogue_var_cutter(data_type, file_name, position_name, centre, radius):
         for i in range(len(values)):
             # check within radius of pmt
             if (radius_check(centre, radius, x[i], y[i])):
-
+                
                 if (values[i] < 0) or (values[i] > 0.16):
                     r_counter +=1
-		    # not set to zero to avoid issues with histogram plotting
-                    values[i] = 0.0001
+                    values[i] = 0
                     errors[i] = 0
                     pos_list.append([x[i],y[i]])
 
@@ -257,10 +268,10 @@ def rogue_var_cutter(data_type, file_name, position_name, centre, radius):
 
             # check within radius of pmt
             if (radius_check(centre, radius, x[i], y[i])):
-
+                     
                 if (values[i] < 0) or (values[i] > 0.18):
                     r_counter +=1
-                    values[i] = 0.0001
+                    values[i] = 0
                     errors[i] = 0
                     pos_list.append([x[i],y[i]])
 
@@ -282,7 +293,7 @@ def rogue_var_cutter(data_type, file_name, position_name, centre, radius):
 
             # check within radius of pmt
             if (radius_check(centre, radius, x[i], y[i])):
-
+                 
                 if (values[i] < 60) or (values[i] > 140):
                     r_counter +=1
                     values[i] = 100
@@ -290,32 +301,7 @@ def rogue_var_cutter(data_type, file_name, position_name, centre, radius):
                     pos_list.append([x[i],y[i]])
 
             else:
-                counter +=1
-                values[i] = 0
-                errors[i] = 0
-        # Write
-        write_file(file_name, values, errors, "clean")
-
-    # Delay Width
-    elif (data_type == 5):
-        print("Scanning LED Delay Values for Rogues...")
-        # Read
-        vals = read_file(file_name)
-        values, errors = splitter(vals)
-        # scan and fix rogues
-        for i in range(len(values)):
-
-            # check within radius of pmt
-            if (radius_check(centre, radius, x[i], y[i])):
-
-                if (values[i] > 15):
-                    r_counter +=1
-                    values[i] = 100
-                    errors[i] = 0
-                    pos_list.append([x[i],y[i]])
-
-            else:
-                counter +=1
+                counter +=1 
                 values[i] = 0
                 errors[i] = 0
         # Write
@@ -325,10 +311,10 @@ def rogue_var_cutter(data_type, file_name, position_name, centre, radius):
     # Final catch
     else:
         print("Please input a valid value for data_type:\n0 - P:V Ratio\n1 - Gain\n2 - Efficiency\n3 - Mu\n4 - LED Delay")
-        return
+        return 
     print("Number of rogues: {}\nNumber of points off PMT: {}".format(r_counter,counter))
     # plot rogues for better understanding
-    plot_points(pos_list, radius, centre)
+    plot_points(pos_list, radius, centre, data_type)
 
 # APPLY DOWN HERE
 #rogue_var_cutter(0, "P_V_Ratio")
@@ -337,4 +323,4 @@ if len(sys.argv) == 6:
     # ignoring the name of the python script
     rogue_var_cutter(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
 else:
-    print("collect_data takes exactly 5 arguments (" + str(len(sys.argv)-1) + ") given.\nPlease input number relative to data being cleaned:\n0 - P:V Ratio\n1 - Gain\n2 - Efficiency\n3 - Mu\n4 - LED Delay\n5 - Delay Width\n\nText file containing the relevant data\n\nPosition File that produced results\n\nCentre of PMT\n\nRadius of PMT")
+    print("collect_data takes exactly 5 arguments (" + str(len(sys.argv)-1) + ") given.\nPlease input number relative to data being cleaned:\n0 - P:V Ratio\n1 - Gain\n2 - Efficiency\n3 - Mu\n4 - LED Delay\n\nText file containing the relevant data\n\nPosition File that produced results\n\nCentre of PMT\n\nRadius of PMT")
