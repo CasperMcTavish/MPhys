@@ -53,7 +53,7 @@ typedef struct {
   ValueWithError valley;
   ValueWithError peakCounts;
   ValueWithError valleyCounts;
-  double fwhm;
+  ValueWithError fwhm;
   int id;
   
 } Result;
@@ -285,7 +285,8 @@ Result* Fit_PeakAndValley(TH1F*  fhisto){
   res->peakCounts.value   = sval;
   res->peakCounts.error   = esval;
     
-  res->fwhm = 2*sqrt(2*log(2))*sigm;
+  res->fwhm.value = 2*sqrt(2*log(2))*sigm;
+  res->fwhm.error = 0;
   //----------------------------------
   // Pedestal Study
   // noise gauss

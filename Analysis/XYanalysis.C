@@ -22,8 +22,8 @@ typedef struct {
   ValueWithError peakToValley;
   ValueWithError efficiency;
   ValueWithError peakTime;
-  double fwhm;
-  float gain;
+  ValueWithError fwhm;
+  ValueWithError gain;
 } Data;
 
 Data* XYanalysis(TString rootFileName = "hQ_Fixed_Run_24_PMT_162_Loc_9_Test_N.root", string pathToData = "./"){
@@ -52,8 +52,10 @@ Data* XYanalysis(TString rootFileName = "hQ_Fixed_Run_24_PMT_162_Loc_9_Test_N.ro
 	//Return data
 	data->mu = result->mu;
 	data->peakToValley = result->peakToValley;
-	data->gain = result->peak.value/400.;
-        data->fwhm = result->fwhm;
+	data->gain.value = result->peak.value/400.;
+	data->gain.error = result->peak.error/400.;
+        data->fwhm.value = result->fwhm.value;
+        data->fwhm.error = result->fwhm.error;
 	//data->peakTime = need to set this up
 	//
 	//Test to prove that its easy to pull these values use, and how to do so
