@@ -67,8 +67,8 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	       binx = h2->GetXaxis()->FindBin(val1);
 	       biny = h2->GetYaxis()->FindBin(val2);
 	       bin = h2->GetBin(binx, biny);
-	       cout << "Error " << val4 << endl;
-	       cout << "Bin " << bin << endl;
+	       //cout << "Error " << val4 << endl;
+	       //cout << "Bin " << bin << endl;
 	       h2->SetBinError(bin , val4);
                //h2->Fill(val1,val2);	
 	        //cout << " val1 = " << val1 << endl;
