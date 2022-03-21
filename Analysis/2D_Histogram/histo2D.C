@@ -39,6 +39,13 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	// Apply file data to TGraph2D
 	int i = 0;
 	int ok = true;
+
+	// Setting up variables for loop
+	Int_t binx = 0;
+	Int_t biny = 0;
+	Int_t bin = 0;
+
+
 	while (ok) {
 	  // Stream values in, val1 is x, val2 is y, val3 is efficiency, val4 is uncertainty
 	  // This system can be functionalised
@@ -57,8 +64,12 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	       
 	       h2->Fill(val1,val2,val3);
 	       // set errors
-	       //cout << "Error " << val4 << endl;
-	       h2->SetBinError(i, val4);
+	       binx = h2->GetXaxis()->FindBin(val1);
+	       biny = h2->GetYaxis()->FindBin(val2);
+	       bin = h2->GetBin(binx, biny);
+	       cout << "Error " << val4 << endl;
+	       cout << "Bin " << bin << endl;
+	       h2->SetBinError(bin , val4);
                //h2->Fill(val1,val2);	
 	        //cout << " val1 = " << val1 << endl;
 	       //textbox->SetPoint(i, val1, val2, val3);
@@ -69,11 +80,12 @@ void histo2D(std::string posdata = "Positions2D", std::string data = "Efficiency
 	in.close();
 
 	// Turn off errors (currently busted otherwise)
-	h2->Sumw2(kFALSE);
+	//h2->Sumw2(kFALSE);
 
 	// plot graphs	
 	graph->SetMarkerStyle(20);
 	graph->Draw("COLZ");
+        h2->GetZaxis()->SetLabelFont(22);
 	// remove legend
 	h2->SetStats(0);
         h2->Draw("colz");
