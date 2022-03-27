@@ -53,7 +53,7 @@ To plot from a different directory, write like so:
 
 	root "Compile_Plot2D.c(\"DIR1/DIR2/XY\",\"DIR1/DIR2/mu\")"
 
-*Insert into /Data_Storage/John/XYTesting/RUNS00-99_PMT162/, but can technically be run outside of this directary as explained above*
+*Insert into /Data_Storage/John/XYTesting/RUNS00-99_PMT162/, but can technically be run outside of this directory as explained above*
 
 #### xy_results.txt
 File that contains the readable values for different properties of the system
