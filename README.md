@@ -6,6 +6,7 @@ There are currently 4 folders:
 * XYScripts - Set up for controlling the XY table (and soon its integration with data collection and analysis)
 * Fitting - Deprecated folder that contains all the required .C files for XYanalysis.C to function. Not necessarily required here and in the future may be removed/cut down.
 * Analysis - Contains the up to date analysis files that are used for collecting and analysing our .root PMT data. These files will need to be placed in certain respective directories to function as intented (eg, XYwrite, XYanalysis and efficiency all need to be placed in $WM_ANALYSE/Fitting/ in the watchman repository).
+* Results - Contains the 2D histograms of the 3 main runs within my MPhys report, including the BIAS 2D histograms in a separate folder.
 * Automation Code - The basic python script that is (currently) used to collect and cook wavedump data while moving the XY table automatically, without human intervention.
 * Misc Macros - Just scripts and short pieces of code that I have written or modified that have their own uses and such will not be removed. Includes the code that produces a data point file for automated PMT collection.
 
@@ -91,7 +92,7 @@ xy_fit_results.txt is another file that is produced as explained in **XY_move_an
 Folder that contains the macro (histo2D.C) for creating a 2D histogram plot with position plots (Positions2D) and a value (efficiency, PV, etc). Acts a bit strange if you only plot along the x and y axis (will fill in the gaps). So need a valid amount of data for worthwhile information.
 
 ### DataCompilation
-Folder that contains a basic malleable script (plotgraphs.C) that allows for the overlay of multiple sets of PMT data.
+Folder that contains a basic malleable script (plotgraphs.C) that allows for the overlay of multiple sets of PMT data along one axis (X or Y).
 Saved here for ease of use with two input files (.root). Can be changed to have more inputs.
 WIP -> Allow unlimited number of file to be added to the graph if need be.
 
