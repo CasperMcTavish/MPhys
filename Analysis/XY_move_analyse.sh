@@ -39,6 +39,8 @@ mv xy_results.txt $TEXT
 # Move back to $dir
 cd $TEXT
 cd ..
+# move fit_results to the right folder, may need to be removed if done already
+mv fit_results.txt $TEXT
 cd ..
 done
 
