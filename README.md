@@ -1,8 +1,9 @@
 # General README
 
 ## NOTE
-This folder contains all the relevant scripts, formatted correctly. If you want the quickest rundown of how to make the apparatus work (excluding the XYScripts), look at the folder "Full_Run_Collection".
+**This folder contains all the relevant scripts, formatted correctly. If you want the quickest rundown of how to make the apparatus work (excluding the XYScripts), look at the folder "Full_Run_Collection".**
 
+## Description
 
 This repository contains all the code I am using/working on during my MPhys at UoE
 There are currently 4 folders:
