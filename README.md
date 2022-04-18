@@ -1,7 +1,7 @@
 # General README
 
 ## NOTE
-**This folder contains all the relevant scripts, formatted correctly. If you want the quickest rundown of how to make the apparatus work (excluding the XYScripts), look at the folder "Full_Run_Collection".**
+**This repository contains all the relevant scripts, formatted correctly. If you want the quickest rundown of how to make the apparatus work (excluding the XYScripts), look at the folder "Full_Run_Collection".**
 
 ## Description
 
